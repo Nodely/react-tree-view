@@ -44,6 +44,7 @@ class Tree extends React.Component {
     ]),
     defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string),
     selectedKeys: PropTypes.arrayOf(PropTypes.string),
+    expandOnClick: PropTypes.bool,
     onExpand: PropTypes.func,
     onCheck: PropTypes.func,
     onSelect: PropTypes.func,
@@ -78,6 +79,7 @@ class Tree extends React.Component {
     defaultExpandedKeys: [],
     defaultCheckedKeys: [],
     defaultSelectedKeys: [],
+    expandOnClick: false,
     onExpand: noop,
     onCheck: noop,
     onSelect: noop,
@@ -354,6 +356,8 @@ class Tree extends React.Component {
       selectedNodes,
     };
     props.onSelect(selectedKeys, eventObj);
+    if (props.expandOnClick)
+        this.onExpand(treeNode);
   }
 
   onMouseEnter(e, treeNode) {
